@@ -1,0 +1,86 @@
+-- phpMyAdmin SQL Dump
+-- version 2.10.3
+-- http://www.phpmyadmin.net
+-- 
+-- Servidor: localhost
+-- Tiempo de generación: 19-10-2015 a las 13:18:17
+-- Versión del servidor: 5.0.51
+-- Versión de PHP: 5.2.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+-- 
+-- Base de datos: `sinfonia`
+-- 
+
+-- --------------------------------------------------------
+
+-- 
+-- Estructura de tabla para la tabla `carpeta`
+-- 
+
+CREATE TABLE `carpeta` (
+  `id` bigint(120) NOT NULL auto_increment,
+  `nombre` varchar(120) NOT NULL,
+  `descripcion` text NOT NULL,
+  `creado` varchar(120) NOT NULL,
+  `cambio` varchar(120) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- 
+-- Volcar la base de datos para la tabla `carpeta`
+-- 
+
+INSERT INTO `carpeta` VALUES (1, 'ERP', 'Pendientes ERP', '19-10-2015 11:52 AM', NULL);
+INSERT INTO `carpeta` VALUES (2, 'DENWA', 'Pendientes denwa', '19-10-2015 11:52 AM', NULL);
+INSERT INTO `carpeta` VALUES (3, 'APP ERP', 'Creacion del app para clientes.', '19-10-2015 12:48 PM', NULL);
+
+-- --------------------------------------------------------
+
+-- 
+-- Estructura de tabla para la tabla `seguimiento`
+-- 
+
+CREATE TABLE `seguimiento` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `tarea_id` bigint(20) NOT NULL,
+  `inicio` varchar(120) NOT NULL,
+  `fin` varchar(120) default NULL,
+  `tiempo` varchar(120) NOT NULL,
+  `comentario` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- 
+-- Volcar la base de datos para la tabla `seguimiento`
+-- 
+
+INSERT INTO `seguimiento` VALUES (1, 1, '19-10-2015 12:36 PM', '19-10-2015 12:54 PM', '12:48', 'Creacion de base de datos para la clonacion de lineas\r\nBD : lineasclones : lineaasgestiones\r\nCreacion de sus modelos en ERP');
+
+-- --------------------------------------------------------
+
+-- 
+-- Estructura de tabla para la tabla `tarea`
+-- 
+
+CREATE TABLE `tarea` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `carpeta_id` bigint(20) NOT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `descripcion` text NOT NULL,
+  `creado` varchar(120) NOT NULL,
+  `cambio` varchar(120) default NULL,
+  `estimado` varchar(120) NOT NULL,
+  `echo` int(2) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- 
+-- Volcar la base de datos para la tabla `tarea`
+-- 
+
+INSERT INTO `tarea` VALUES (1, 1, 'gestión de lineas', 'Creacion de gestor de calidad de lineas\r\nLas lineas se clonaras y se les dara un chekeo de su esrado en\r\nese momento  para consulta de su historial en futuras pasos\r\nindependiente del el cambio costante de las lineas', '19-10-2015 11:54 AM', '19-10-2015 11:54 AM', '8', 0);
+INSERT INTO `tarea` VALUES (2, 1, 'Nuevos contratos', 'Creacion de nuevos contratos en diseño y en clausulas por:\r\nSede, tipo de contrato, tipo de empresa\r\n', '19-10-2015 11:56 AM', NULL, '25', 0);
+INSERT INTO `tarea` VALUES (3, 1, 'Multiples observacion en los tikecs', 'Multiples observaciones dentro de los tickes de tecnolosgia', '19-10-2015 11:56 AM', NULL, '8', 0);
+INSERT INTO `tarea` VALUES (4, 2, 'Ticket de agendamiento', 'Estos permiten ver loo agendado condicionado con el campo requerido', '19-10-2015 11:57 AM', NULL, '18', 0);
